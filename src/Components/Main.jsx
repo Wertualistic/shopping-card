@@ -4,11 +4,13 @@ import { API_KEY, API_URL } from "../config";
 import Cart from "./Cart";
 import GoodList from "./GoodList";
 import Loader from "./Loader";
+import BasketList from "./BasketList";
 
 function Main() {
   const [goods, setGoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState([]);
+  const [isBasketShow, setBasketShow] = useState(false);
 
   const addToBasket = (item) => {
     const itemIndex = order.findIndex(
@@ -36,6 +38,10 @@ function Main() {
     }
   };
 
+  const handleBasketShow = () => {
+    setBasketShow(!isBasketShow);
+  }
+
   useEffect(() => {
     fetch(API_URL, {
       headers: { Authorization: API_KEY },
@@ -51,12 +57,13 @@ function Main() {
 
   return (
     <div className="content">
-      <Cart quantity={order.length} />
+      <Cart quantity={order.length} handleBasketShow={handleBasketShow} />
       {loading ? (
         <Loader />
       ) : (
         <GoodList goods={goods} addToBasket={addToBasket} />
       )}
+      {isBasketShow && <BasketList order={order}/>}
     </div>
   );
 }

@@ -4,15 +4,15 @@ function GoodItem(props) {
     const {mainId, displayName, displayAssets, displayDescription, price, addToBasket} = props;
 
   return (
-    <div class="card" key={mainId}>
-        <div class="card-image">
+    <div className="card" key={mainId}>
+        <div className="card-image">
           <img src={displayAssets[0].full_background} alt={displayName} />
         </div>
-        <div class="card-content">
-        <span class="card-title">{displayName}</span>
+        <div className="card-content">
+        <span className="card-title">{displayName}</span>
           <p>{displayDescription}</p>
         </div>
-        <div class="card-action">
+        <div className="card-action">
           <button className="btn" onClick={() => addToBasket({mainId, displayName, price})}>Buy</button>
           <span className='right'>{JSON.stringify(price.finalPrice)}$</span>
         </div>
