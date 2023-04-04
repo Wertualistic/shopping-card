@@ -110,6 +110,10 @@ nav{
     height: 500px;
 }
 
+.list{
+    height: 450px;
+}
+
 @keyframes show {
     from{
         top: 70%;
